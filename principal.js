@@ -1,0 +1,1 @@
+// Configuração do Intersection Observer para animações

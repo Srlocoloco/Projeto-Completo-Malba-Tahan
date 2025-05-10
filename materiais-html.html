@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML5 - Estruturação de Páginas Web</title>
+    <link rel="shortcut icon" href="malbaLogo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FFD700;
+            --text: #E0E0E0;
+            --background: #0A0A0A;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --gradient-1: linear-gradient(45deg, #FFD700, #FFA500);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--background);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Background Animado */
+        .animated-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        .twinkling {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, var(--background) 100%);
+        }
+
+        .tech-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, var(--glass-border) 1px, transparent 1px) 0 0 / 50px 50px,
+                linear-gradient(0deg, var(--glass-border) 1px, transparent 1px) 0 0 / 50px 50px;
+            opacity: 0.1;
+        }
+
+        .space-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .space-particle {
+            position: absolute;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: float 5s infinite;
+        }
+
+        .gradient-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, var(--background) 100%);
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Header */
+        header {
+            position: relative;
+            z-index: 1;
+            padding: 2rem 0;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), transparent);
+        }
+
+        .header-content {
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        .logo-link {
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+        }
+
+        .header-content h1 {
+            font-size: 2.5rem;
+            margin: 0.5rem 0;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header-content p {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+            opacity: 0.9;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .nav-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.1);
+            background: var(--gradient-1);
+            color: var(--background);
+        }
+
+        /* Conteúdo */
+        main {
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .content-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .content-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.08);
+        }
+
+        .content-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .content-card p {
+            color: var(--text);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        pre {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            position: relative;
+        }
+
+        pre::before {
+            content: 'Código';
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--gradient-1);
+            color: var(--background);
+            padding: 0.2rem 0.8rem;
+            border-radius: 0 8px 0 8px;
+            font-size: 0.7rem;
+        }
+
+        code {
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            color: #E0E0E0;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: var(--gradient-1);
+            color: var(--background);
+            text-decoration: none;
+            border-radius: 50px;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.2);
+        }
+
+        .back-button i {
+            margin-right: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid var(--glass-border);
+            margin-top: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        footer p {
+            color: var(--text);
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .content-card {
+                padding: 1.2rem;
+            }
+
+            .content-card h3 {
+                font-size: 1.3rem;
+            }
+
+            .nav-links {
+                gap: 0.5rem;
+            }
+
+            .nav-link {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-background">
+        <div class="stars"></div>
+        <div class="twinkling"></div>
+        <div class="tech-grid"></div>
+        <div class="space-particles"></div>
+        <div class="gradient-overlay"></div>
+    </div>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo-link">
+                    <img src="malbaLogo.png" alt="Logo do Colégio Malba Tahan" class="logo">
+                </a>
+                <h1>HTML5</h1>
+                <p>Estruturação de Páginas Web</p>
+                <div class="nav-links">
+                    <a href="#basico" class="nav-link">Básico</a>
+                    <a href="#intermediario" class="nav-link">Intermediário</a>
+                    <a href="#avancado" class="nav-link">Avançado</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <a href="index.html" class="back-button">
+                <i class="fas fa-arrow-left"></i>
+                Voltar
+            </a>
+
+            <section id="basico" class="content-section">
+                <h2>HTML Básico</h2>
+                <div class="content-card">
+                    <h3>O que é HTML?</h3>
+                    <p>HTML (HyperText Markup Language) é a linguagem fundamental para criar páginas web. É uma linguagem de marcação que usa tags para estruturar o conteúdo.</p>
+                    <ul>
+                        <li><strong>HyperText:</strong> Texto que contém links para outras páginas</li>
+                        <li><strong>Markup:</strong> Sistema de marcação usando tags</li>
+                        <li><strong>Language:</strong> Linguagem com regras e sintaxe próprias</li>
+                    </ul>
+                </div>
+
+                <div class="content-card">
+                    <h3>Estrutura Básica de um Documento HTML</h3>
+                    <pre><code>&lt;!DOCTYPE html&gt;  <!-- Declaração do tipo de documento -->
+&lt;html lang="pt-BR"&gt;  <!-- Elemento raiz -->
+&lt;head&gt;  <!-- Cabeçalho do documento -->
+    &lt;meta charset="UTF-8"&gt;  <!-- Codificação de caracteres -->
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;  <!-- Responsividade -->
+    &lt;title&gt;Minha Página&lt;/title&gt;  <!-- Título da página -->
+&lt;/head&gt;
+&lt;body&gt;  <!-- Corpo do documento -->
+    &lt;!-- Conteúdo da página aqui --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+
+                <div class="content-card">
+                    <h3>Tags Básicas de Texto</h3>
+                    <pre><code>&lt;!-- Títulos --&gt;
+&lt;h1&gt;Título Principal&lt;/h1&gt;  <!-- Use apenas um h1 por página -->
+&lt;h2&gt;Subtítulo&lt;/h2&gt;
+&lt;h3&gt;Título de Seção&lt;/h3&gt;
+&lt;h4&gt;Subtítulo Menor&lt;/h4&gt;
+&lt;h5&gt;Título Pequeno&lt;/h5&gt;
+&lt;h6&gt;Título Muito Pequeno&lt;/h6&gt;
+
+&lt;!-- Parágrafos e Formatação --&gt;
+&lt;p&gt;Este é um parágrafo de texto.&lt;/p&gt;
+&lt;p&gt;Este é outro parágrafo.&lt;/p&gt;
+
+&lt;!-- Formatação de Texto --&gt;
+&lt;strong&gt;Texto em negrito&lt;/strong&gt;
+&lt;em&gt;Texto em itálico&lt;/em&gt;
+&lt;u&gt;Texto sublinhado&lt;/u&gt;
+&lt;mark&gt;Texto marcado&lt;/mark&gt;
+&lt;small&gt;Texto pequeno&lt;/small&gt;
+&lt;del&gt;Texto deletado&lt;/del&gt;
+&lt;ins&gt;Texto inserido&lt;/ins&gt;
+&lt;sub&gt;Texto subscrito&lt;/sub&gt;
+&lt;sup&gt;Texto sobrescrito&lt;/sup&gt;
+
+&lt;!-- Quebras de Linha e Linha Horizontal --&gt;
+&lt;br&gt;  <!-- Quebra de linha -->
+&lt;hr&gt;  <!-- Linha horizontal -->
+
+&lt;!-- Citações --&gt;
+&lt;blockquote&gt;
+    Esta é uma citação longa.
+    Pode ter várias linhas.
+&lt;/blockquote&gt;
+&lt;q&gt;Esta é uma citação curta.&lt;/q&gt;
+
+&lt;!-- Código --&gt;
+&lt;code&gt;console.log("Hello World");&lt;/code&gt;
+&lt;pre&gt;
+    Este texto
+    mantém a formatação
+    exatamente como está
+&lt;/pre&gt;</code></pre>
+                </div>
+
+                <div class="content-card">
+                    <h3>Listas</h3>
+                    <pre><code>&lt;!-- Lista não ordenada --&gt;
+&lt;ul&gt;
+    &lt;li&gt;Item 1&lt;/li&gt;
+    &lt;li&gt;Item 2&lt;/li&gt;
+    &lt;li&gt;Item 3&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- Lista ordenada --&gt;
+&lt;ol&gt;
+    &lt;li&gt;Primeiro item&lt;/li&gt;
+    &lt;li&gt;Segundo item&lt;/li&gt;
+    &lt;li&gt;Terceiro item&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;!-- Lista de definição --&gt;
+&lt;dl&gt;
+    &lt;dt&gt;HTML&lt;/dt&gt;
+    &lt;dd&gt;Linguagem de marcação para web&lt;/dd&gt;
+    &lt;dt&gt;CSS&lt;/dt&gt;
+    &lt;dd&gt;Linguagem de estilo para web&lt;/dd&gt;
+&lt;/dl&gt;
+
+&lt;!-- Lista aninhada --&gt;
+&lt;ul&gt;
+    &lt;li&gt;Item 1
+        &lt;ul&gt;
+            &lt;li&gt;Subitem 1.1&lt;/li&gt;
+            &lt;li&gt;Subitem 1.2&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;Item 2&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                </div>
+
+                <div class="content-card">
+                    <h3>Links e Âncoras</h3>
+                    <pre><code>&lt;!-- Link básico --&gt;
+&lt;a href="https://exemplo.com"&gt;Link para site externo&lt;/a&gt;
+
+&lt;!-- Link com atributos --&gt;
+&lt;a href="pagina.html" 
+   target="_blank" 
+   rel="noopener noreferrer" 
+   title="Abrir em nova aba"&gt;
+    Link com atributos
+&lt;/a&gt;
+
+&lt;!-- Link para e-mail --&gt;
+&lt;a href="mailto:email@exemplo.com"&gt;Enviar e-mail&lt;/a&gt;
+
+&lt;!-- Link para telefone --&gt;
+&lt;a href="tel:+5511999999999"&gt;Ligar agora&lt;/a&gt;
+
+&lt;!-- Link para download --&gt;
+&lt;a href="arquivo.pdf" download&gt;Baixar PDF&lt;/a&gt;
+
+&lt;!-- Link para seção da página --&gt;
+&lt;a href="#secao1"&gt;Ir para Seção 1&lt;/a&gt;
+&lt;section id="secao1"&gt;
+    &lt;h2&gt;Seção 1&lt;/h2&gt;
+    &lt;p&gt;Conteúdo da seção 1&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+                </div>
+
+                <div class="content-card">
+                    <h3>Imagens</h3>
+                    <pre><code>&lt;!-- Imagem básica --&gt;
+&lt;img src="imagem.jpg" alt="Descrição da imagem"&gt;
+
+&lt;!-- Imagem com dimensões --&gt;
+&lt;img src="imagem.jpg" 
+     alt="Descrição" 
+     width="300" 
+     height="200"&gt;
+
+&lt;!-- Imagem responsiva --&gt;
+&lt;img src="imagem.jpg" 
+     alt="Descrição" 
+     style="max-width: 100%; height: auto;"&gt;
+
+&lt;!-- Imagem com título --&gt;
+&lt;figure&gt;
+    &lt;img src="imagem.jpg" alt="Descrição"&gt;
+    &lt;figcaption&gt;Legenda da imagem&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;!-- Imagem com múltiplas fontes --&gt;
+&lt;picture&gt;
+    &lt;source media="(min-width: 800px)" srcset="imagem-grande.jpg"&gt;
+    &lt;source media="(min-width: 400px)" srcset="imagem-media.jpg"&gt;
+    &lt;img src="imagem-pequena.jpg" alt="Imagem responsiva"&gt;
+&lt;/picture&gt;</code></pre>
+                </div>
+
+                <div class="content-card">
+                    <h3>Formulários Básicos</h3>
+                    <pre><code>&lt;form action="/enviar" method="POST"&gt;
+    &lt;!-- Campos de texto --&gt;
+    &lt;label for="nome"&gt;Nome:&lt;/label&gt;
+    &lt;input type="text" id="nome" name="nome" required&gt;
+
+    &lt;!-- Tipos de input --&gt;
+    &lt;input type="text"&gt;  &lt;!-- Texto simples --&gt;
+    &lt;input type="password"&gt;  &lt;!-- Senha --&gt;
+    &lt;input type="email"&gt;  &lt;!-- E-mail --&gt;
+    &lt;input type="tel"&gt;  &lt;!-- Telefone --&gt;
+    &lt;input type="number"&gt;  &lt;!-- Número --&gt;
+    &lt;input type="date"&gt;  &lt;!-- Data --&gt;
+    &lt;input type="time"&gt;  &lt;!-- Hora --&gt;
+    &lt;input type="datetime-local"&gt;  &lt;!-- Data e hora --&gt;
+    &lt;input type="color"&gt;  &lt;!-- Seletor de cor --&gt;
+    &lt;input type="range"&gt;  &lt;!-- Controle deslizante --&gt;
+    &lt;input type="file"&gt;  &lt;!-- Upload de arquivo --&gt;
+    &lt;input type="hidden"&gt;  &lt;!-- Campo oculto --&gt;
+    &lt;input type="search"&gt;  &lt;!-- Campo de busca --&gt;
+    &lt;input type="url"&gt;  &lt;!-- URL --&gt;
+
+    &lt;!-- Área de texto --&gt;
+    &lt;label for="mensagem"&gt;Mensagem:&lt;/label&gt;
+    &lt;textarea id="mensagem" name="mensagem" rows="4" cols="50"&gt;&lt;/textarea&gt;
+
+    &lt;!-- Lista suspensa --&gt;
+    &lt;label for="cidade"&gt;Cidade:&lt;/label&gt;
+    &lt;select id="cidade" name="cidade"&gt;
+        &lt;option value=""&gt;Selecione uma cidade&lt;/option&gt;
+        &lt;option value="sp"&gt;São Paulo&lt;/option&gt;
+        &lt;option value="rj"&gt;Rio de Janeiro&lt;/option&gt;
+        &lt;option value="bh"&gt;Belo Horizonte&lt;/option&gt;
+    &lt;/select&gt;
+
+    &lt;!-- Campos de seleção --&gt;
+    &lt;fieldset&gt;
+        &lt;legend&gt;Preferências:&lt;/legend&gt;
+        
+        &lt;!-- Checkbox --&gt;
+        &lt;input type="checkbox" id="newsletter" name="newsletter"&gt;
+        &lt;label for="newsletter"&gt;Receber newsletter&lt;/label&gt;
+        
+        &lt;!-- Radio buttons --&gt;
+        &lt;input type="radio" id="masculino" name="genero" value="masculino"&gt;
+        &lt;label for="masculino"&gt;Masculino&lt;/label&gt;
+        
+        &lt;input type="radio" id="feminino" name="genero" value="feminino"&gt;
+        &lt;label for="feminino"&gt;Feminino&lt;/label&gt;
+    &lt;/fieldset&gt;
+
+    &lt;!-- Botões --&gt;
+    &lt;button type="submit"&gt;Enviar&lt;/button&gt;
+    &lt;button type="reset"&gt;Limpar&lt;/button&gt;
+    &lt;button type="button"&gt;Botão normal&lt;/button&gt;
+    &lt;input type="submit" value="Enviar"&gt;
+    &lt;input type="reset" value="Limpar"&gt;
+    &lt;input type="button" value="Botão"&gt;
+&lt;/form&gt;</code></pre>
+                </div>
+
+                <div class="content-card">
+                    <h3>Atributos Comuns</h3>
+                    <pre><code>&lt;!-- Atributos globais --&gt;
+&lt;div id="unico"&gt;  &lt;!-- Identificador único --&gt;
+&lt;div class="classe1 classe2"&gt;  &lt;!-- Classes CSS --&gt;
+&lt;div style="color: red;"&gt;  &lt;!-- Estilo inline --&gt;
+&lt;div title="Tooltip"&gt;  &lt;!-- Informação adicional --&gt;
+&lt;div lang="pt-BR"&gt;  &lt;!-- Idioma --&gt;
+&lt;div dir="ltr"&gt;  &lt;!-- Direção do texto --&gt;
+&lt;div hidden&gt;  &lt;!-- Elemento oculto --&gt;
+&lt;div tabindex="0"&gt;  &lt;!-- Ordem de foco --&gt;
+&lt;div contenteditable="true"&gt;  &lt;!-- Conteúdo editável --&gt;
+&lt;div spellcheck="true"&gt;  &lt;!-- Verificação ortográfica --&gt;
+&lt;div draggable="true"&gt;  &lt;!-- Elemento arrastável --&gt;
+
+&lt;!-- Atributos de formulário --&gt;
+&lt;input required&gt;  &lt;!-- Campo obrigatório --&gt;
+&lt;input disabled&gt;  &lt;!-- Campo desabilitado --&gt;
+&lt;input readonly&gt;  &lt;!-- Campo somente leitura --&gt;
+&lt;input placeholder="Digite algo"&gt;  &lt;!-- Texto de exemplo --&gt;
+&lt;input maxlength="50"&gt;  &lt;!-- Limite de caracteres --&gt;
+&lt;input min="0" max="100"&gt;  &lt;!-- Valores mínimo e máximo --&gt;
+&lt;input step="1"&gt;  &lt;!-- Incremento --&gt;
+&lt;input pattern="[A-Za-z]{3}"&gt;  &lt;!-- Padrão de validação --&gt;
+&lt;input autocomplete="on"&gt;  &lt;!-- Autocompletar --&gt;
+&lt;input autofocus&gt;  &lt;!-- Foco automático --&gt;
+
+&lt;!-- Atributos de mídia --&gt;
+&lt;img src="imagem.jpg" alt="Descrição"&gt;  &lt;!-- Texto alternativo --&gt;
+&lt;img src="imagem.jpg" loading="lazy"&gt;  &lt;!-- Carregamento preguiçoso --&gt;
+&lt;video controls&gt;  &lt;!-- Controles de vídeo --&gt;
+&lt;audio autoplay&gt;  &lt;!-- Reprodução automática --&gt;
+&lt;video loop&gt;  &lt;!-- Repetição --&gt;
+&lt;video muted&gt;  &lt;!-- Sem som --&gt;
+&lt;video preload="auto"&gt;  &lt;!-- Pré-carregamento --&gt;</code></pre>
+                </div>
+
+                <div class="content-card">
+                    <h3>Elementos de Tabela</h3>
+                    <pre><code>&lt;table&gt;
+    &lt;caption&gt;Título da Tabela&lt;/caption&gt;
+    
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th scope="col"&gt;Nome&lt;/th&gt;
+            &lt;th scope="col"&gt;Idade&lt;/th&gt;
+            &lt;th scope="col"&gt;Cidade&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;João&lt;/td&gt;
+            &lt;td&gt;25&lt;/td&gt;
+            &lt;td&gt;São Paulo&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Maria&lt;/td&gt;
+            &lt;td&gt;30&lt;/td&gt;
+            &lt;td&gt;Rio de Janeiro&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+    
+    &lt;tfoot&gt;
+        &lt;tr&gt;
+            &lt;td colspan="3"&gt;Total: 2 pessoas&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tfoot&gt;
+&lt;/table&gt;
+
+&lt;!-- Tabela com mesclagem de células --&gt;
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td rowspan="2"&gt;Célula mesclada verticalmente&lt;/td&gt;
+        &lt;td&gt;Célula normal&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Outra célula&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td colspan="2"&gt;Célula mesclada horizontalmente&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+                </div>
+            </section>
+
+            <section id="intermediario" class="content-section">
+                <h2>HTML Intermediário</h2>
+                <div class="content-card">
+                    <h3>Formulários</h3>
+                    <p>Os formulários são essenciais para coletar dados dos usuários. Vamos entender cada elemento:</p>
+                    <pre><code>&lt;form action="/enviar" method="POST" enctype="multipart/form-data"&gt;
+    &lt;!-- Campos de texto --&gt;
+    &lt;div class="form-group"&gt;
+        &lt;label for="nome"&gt;Nome:&lt;/label&gt;
+        &lt;input type="text" 
+               id="nome" 
+               name="nome" 
+               required 
+               minlength="3" 
+               maxlength="50" 
+               placeholder="Digite seu nome"&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Campo de e-mail --&gt;
+    &lt;div class="form-group"&gt;
+        &lt;label for="email"&gt;E-mail:&lt;/label&gt;
+        &lt;input type="email" 
+               id="email" 
+               name="email" 
+               required 
+               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Campo de senha --&gt;
+    &lt;div class="form-group"&gt;
+        &lt;label for="senha"&gt;Senha:&lt;/label&gt;
+        &lt;input type="password" 
+               id="senha" 
+               name="senha" 
+               required 
+               minlength="8"&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Área de texto --&gt;
+    &lt;div class="form-group"&gt;
+        &lt;label for="mensagem"&gt;Mensagem:&lt;/label&gt;
+        &lt;textarea id="mensagem" 
+                  name="mensagem" 
+                  rows="4" 
+                  cols="50" 
+                  maxlength="500"&gt;&lt;/textarea&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Lista suspensa --&gt;
+    &lt;div class="form-group"&gt;
+        &lt;label for="categoria"&gt;Categoria:&lt;/label&gt;
+        &lt;select id="categoria" name="categoria" required&gt;
+            &lt;option value=""&gt;Selecione uma categoria&lt;/option&gt;
+            &lt;option value="duvida"&gt;Dúvida&lt;/option&gt;
+            &lt;option value="sugestao"&gt;Sugestão&lt;/option&gt;
+            &lt;option value="reclamacao"&gt;Reclamação&lt;/option&gt;
+        &lt;/select&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Campos de seleção --&gt;
+    &lt;div class="form-group"&gt;
+        &lt;fieldset&gt;
+            &lt;legend&gt;Preferências:&lt;/legend&gt;
+            &lt;input type="checkbox" id="newsletter" name="newsletter"&gt;
+            &lt;label for="newsletter"&gt;Receber newsletter&lt;/label&gt;
+            
+            &lt;input type="checkbox" id="promocoes" name="promocoes"&gt;
+            &lt;label for="promocoes"&gt;Receber promoções&lt;/label&gt;
+        &lt;/fieldset&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Campos de rádio --&gt;
+    &lt;div class="form-group"&gt;
+        &lt;fieldset&gt;
+            &lt;legend&gt;Forma de contato:&lt;/legend&gt;
+            &lt;input type="radio" id="email" name="contato" value="email"&gt;
+            &lt;label for="email"&gt;E-mail&lt;/label&gt;
+            
+            &lt;input type="radio" id="telefone" name="contato" value="telefone"&gt;
+            &lt;label for="telefone"&gt;Telefone&lt;/label&gt;
+            
+            &lt;input type="radio" id="whatsapp" name="contato" value="whatsapp"&gt;
+            &lt;label for="whatsapp"&gt;WhatsApp&lt;/label&gt;
+        &lt;/fieldset&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Upload de arquivo --&gt;
+    &lt;div class="form-group"&gt;
+        &lt;label for="arquivo"&gt;Anexar arquivo:&lt;/label&gt;
+        &lt;input type="file" 
+               id="arquivo" 
+               name="arquivo" 
+               accept=".pdf,.doc,.docx" 
+               multiple&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Campos de data e hora --&gt;
+    &lt;div class="form-group"&gt;
+        &lt;label for="data"&gt;Data:&lt;/label&gt;
+        &lt;input type="date" id="data" name="data"&gt;
+        
+        &lt;label for="hora"&gt;Hora:&lt;/label&gt;
+        &lt;input type="time" id="hora" name="hora"&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Campos numéricos --&gt;
+    &lt;div class="form-group"&gt;
+        &lt;label for="quantidade"&gt;Quantidade:&lt;/label&gt;
+        &lt;input type="number" 
+               id="quantidade" 
+               name="quantidade" 
+               min="1" 
+               max="100" 
+               step="1"&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Campos de cor --&gt;
+    &lt;div class="form-group"&gt;
+        &lt;label for="cor"&gt;Cor preferida:&lt;/label&gt;
+        &lt;input type="color" id="cor" name="cor"&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Campos de intervalo --&gt;
+    &lt;div class="form-group"&gt;
+        &lt;label for="satisfacao"&gt;Nível de satisfação:&lt;/label&gt;
+        &lt;input type="range" 
+               id="satisfacao" 
+               name="satisfacao" 
+               min="1" 
+               max="10" 
+               step="1"&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Botões --&gt;
+    &lt;div class="form-group"&gt;
+        &lt;button type="submit"&gt;Enviar&lt;/button&gt;
+        &lt;button type="reset"&gt;Limpar&lt;/button&gt;
+        &lt;button type="button"&gt;Botão normal&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/form&gt;</code></pre>
+                </div>
+
+                <div class="content-card">
+                    <h3>Elementos de Mídia</h3>
+                    <p>HTML5 oferece várias tags para incorporar mídia:</p>
+                    <pre><code>&lt;!-- Imagem básica --&gt;
+&lt;img src="imagem.jpg" 
+     alt="Descrição da imagem" 
+     width="300" 
+     height="200" 
+     loading="lazy"&gt;
+
+&lt;!-- Imagem responsiva --&gt;
+&lt;picture&gt;
+    &lt;source media="(min-width: 800px)" srcset="imagem-grande.jpg"&gt;
+    &lt;source media="(min-width: 400px)" srcset="imagem-media.jpg"&gt;
+    &lt;img src="imagem-pequena.jpg" alt="Imagem responsiva"&gt;
+&lt;/picture&gt;
+
+&lt;!-- Áudio --&gt;
+&lt;audio controls preload="metadata"&gt;
+    &lt;source src="audio.mp3" type="audio/mpeg"&gt;
+    &lt;source src="audio.ogg" type="audio/ogg"&gt;
+    Seu navegador não suporta o elemento de áudio.
+&lt;/audio&gt;
+
+&lt;!-- Vídeo --&gt;
+&lt;video controls width="640" height="360" poster="thumbnail.jpg"&gt;
+    &lt;source src="video.mp4" type="video/mp4"&gt;
+    &lt;source src="video.webm" type="video/webm"&gt;
+    &lt;track src="legendas-pt.vtt" 
+           kind="subtitles" 
+           srclang="pt" 
+           label="Português" 
+           default&gt;
+    Seu navegador não suporta o elemento de vídeo.
+&lt;/video&gt;
+
+&lt;!-- Iframe --&gt;
+&lt;iframe src="https://www.youtube.com/embed/VIDEO_ID" 
+        width="560" 
+        height="315" 
+        frameborder="0" 
+        allowfullscreen&gt;
+&lt;/iframe&gt;
+
+&lt;!-- Figura com legenda --&gt;
+&lt;figure&gt;
+    &lt;img src="imagem.jpg" alt="Descrição"&gt;
+    &lt;figcaption&gt;Legenda da imagem&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+                </div>
+
+                <div class="content-card">
+                    <h3>Tabelas</h3>
+                    <p>Tabelas são usadas para exibir dados em formato tabular:</p>
+                    <pre><code>&lt;table&gt;
+    &lt;caption&gt;Título da Tabela&lt;/caption&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th scope="col"&gt;Nome&lt;/th&gt;
+            &lt;th scope="col"&gt;Idade&lt;/th&gt;
+            &lt;th scope="col"&gt;Cidade&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;João&lt;/td&gt;
+            &lt;td&gt;25&lt;/td&gt;
+            &lt;td&gt;São Paulo&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Maria&lt;/td&gt;
+            &lt;td&gt;30&lt;/td&gt;
+            &lt;td&gt;Rio de Janeiro&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+    &lt;tfoot&gt;
+        &lt;tr&gt;
+            &lt;td colspan="3"&gt;Total: 2 pessoas&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tfoot&gt;
+&lt;/table&gt;</code></pre>
+                </div>
+            </section>
+
+            <section id="avancado" class="content-section">
+                <h2>HTML Avançado</h2>
+                <div class="content-card">
+                    <h3>Elementos Semânticos</h3>
+                    <p>O HTML5 introduziu vários elementos semânticos que ajudam a estruturar melhor o conteúdo:</p>
+                    <ul>
+                        <li><code>&lt;header&gt;</code> - Cabeçalho da página ou seção</li>
+                        <li><code>&lt;nav&gt;</code> - Menu de navegação</li>
+                        <li><code>&lt;main&gt;</code> - Conteúdo principal</li>
+                        <li><code>&lt;article&gt;</code> - Conteúdo independente e autocontido</li>
+                        <li><code>&lt;section&gt;</code> - Seção temática de conteúdo</li>
+                        <li><code>&lt;aside&gt;</code> - Conteúdo relacionado (sidebar)</li>
+                        <li><code>&lt;footer&gt;</code> - Rodapé da página ou seção</li>
+                        <li><code>&lt;figure&gt;</code> - Conteúdo independente (imagens, diagramas)</li>
+                        <li><code>&lt;figcaption&gt;</code> - Legenda para figure</li>
+                        <li><code>&lt;time&gt;</code> - Representa data/hora</li>
+                        <li><code>&lt;mark&gt;</code> - Texto marcado/destacado</li>
+                        <li><code>&lt;details&gt;</code> e <code>&lt;summary&gt;</code> - Conteúdo expansível</li>
+                        <li><code>&lt;dialog&gt;</code> - Caixa de diálogo</li>
+                        <li><code>&lt;data&gt;</code> - Dados com valor semântico</li>
+                        <li><code>&lt;meter&gt;</code> - Medida dentro de um intervalo</li>
+                        <li><code>&lt;progress&gt;</code> - Barra de progresso</li>
+                    </ul>
+                </div>
+
+                <div class="content-card">
+                    <h3>Atributos Globais</h3>
+                    <p>Atributos que podem ser usados em qualquer elemento HTML:</p>
+                    <ul>
+                        <li><code>class</code> - Define classes CSS</li>
+                        <li><code>id</code> - Identificador único</li>
+                        <li><code>style</code> - Estilos CSS inline</li>
+                        <li><code>title</code> - Informação adicional (tooltip)</li>
+                        <li><code>lang</code> - Idioma do elemento</li>
+                        <li><code>data-*</code> - Atributos personalizados</li>
+                        <li><code>hidden</code> - Esconde o elemento</li>
+                        <li><code>tabindex</code> - Ordem de foco</li>
+                        <li><code>contenteditable</code> - Permite edição</li>
+                        <li><code>spellcheck</code> - Verificação ortográfica</li>
+                        <li><code>draggable</code> - Permite arrastar o elemento</li>
+                        <li><code>dropzone</code> - Define onde elementos podem ser soltos</li>
+                        <li><code>translate</code> - Controla se o texto deve ser traduzido</li>
+                        <li><code>dir</code> - Direção do texto (ltr/rtl)</li>
+                        <li><code>accesskey</code> - Atalho de teclado</li>
+                    </ul>
+                </div>
+
+                <div class="content-card">
+                    <h3>Meta Tags Importantes</h3>
+                    <p>Meta tags para SEO e compartilhamento em redes sociais:</p>
+                    <pre><code>&lt;head&gt;
+    &lt;!-- Meta tags básicas --&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;meta name="description" content="Descrição do site"&gt;
+    &lt;meta name="keywords" content="palavras-chave, separadas, por, vírgula"&gt;
+    &lt;meta name="author" content="Nome do Autor"&gt;
+    &lt;meta name="robots" content="index, follow"&gt;
+    &lt;meta name="language" content="Portuguese"&gt;
+    &lt;meta name="revisit-after" content="7 days"&gt;
+    
+    &lt;!-- Open Graph / Facebook --&gt;
+    &lt;meta property="og:type" content="website"&gt;
+    &lt;meta property="og:url" content="https://seusite.com/"&gt;
+    &lt;meta property="og:title" content="Título do Site"&gt;
+    &lt;meta property="og:description" content="Descrição do site"&gt;
+    &lt;meta property="og:image" content="https://seusite.com/imagem.jpg"&gt;
+    &lt;meta property="og:site_name" content="Nome do Site"&gt;
+    &lt;meta property="og:locale" content="pt_BR"&gt;
+    
+    &lt;!-- Twitter --&gt;
+    &lt;meta property="twitter:card" content="summary_large_image"&gt;
+    &lt;meta property="twitter:url" content="https://seusite.com/"&gt;
+    &lt;meta property="twitter:title" content="Título do Site"&gt;
+    &lt;meta property="twitter:description" content="Descrição do site"&gt;
+    &lt;meta property="twitter:image" content="https://seusite.com/imagem.jpg"&gt;
+    &lt;meta property="twitter:creator" content="@seutwitter"&gt;
+    
+    &lt;!-- Apple Touch Icon --&gt;
+    &lt;link rel="apple-touch-icon" href="icon-192x192.png"&gt;
+    &lt;link rel="apple-touch-icon" sizes="152x152" href="icon-152x152.png"&gt;
+    &lt;link rel="apple-touch-icon" sizes="180x180" href="icon-180x180.png"&gt;
+    &lt;link rel="apple-touch-icon" sizes="167x167" href="icon-167x167.png"&gt;
+    
+    &lt;!-- PWA --&gt;
+    &lt;link rel="manifest" href="manifest.json"&gt;
+    &lt;meta name="theme-color" content="#000000"&gt;
+    &lt;meta name="apple-mobile-web-app-capable" content="yes"&gt;
+    &lt;meta name="apple-mobile-web-app-status-bar-style" content="black"&gt;
+    &lt;meta name="apple-mobile-web-app-title" content="Nome do App"&gt;
+    
+    &lt;!-- Canonical URL --&gt;
+    &lt;link rel="canonical" href="https://seusite.com/pagina"&gt;
+&lt;/head&gt;</code></pre>
+                </div>
+
+                <div class="content-card">
+                    <h3>Elementos de Acessibilidade</h3>
+                    <p>HTML5 inclui vários elementos e atributos para melhorar a acessibilidade:</p>
+                    <pre><code>&lt;!-- ARIA Roles --&gt;
+&lt;div role="banner"&gt;...&lt;/div&gt;
+&lt;div role="navigation"&gt;...&lt;/div&gt;
+&lt;div role="main"&gt;...&lt;/div&gt;
+&lt;div role="complementary"&gt;...&lt;/div&gt;
+&lt;div role="contentinfo"&gt;...&lt;/div&gt;
+
+&lt;!-- ARIA Labels --&gt;
+&lt;button aria-label="Fechar"&gt;X&lt;/button&gt;
+&lt;input type="text" aria-label="Buscar"&gt;
+
+&lt;!-- ARIA Descriptions --&gt;
+&lt;div aria-describedby="descricao"&gt;...&lt;/div&gt;
+&lt;div id="descricao"&gt;Descrição detalhada&lt;/div&gt;
+
+&lt;!-- ARIA Live Regions --&gt;
+&lt;div aria-live="polite"&gt;...&lt;/div&gt;
+&lt;div aria-live="assertive"&gt;...&lt;/div&gt;
+
+&lt;!-- Skip Links --&gt;
+&lt;a href="#main" class="skip-link"&gt;Pular para o conteúdo principal&lt;/a&gt;
+
+&lt;!-- Alt Text --&gt;
+&lt;img src="imagem.jpg" alt="Descrição detalhada da imagem"&gt;
+
+&lt;!-- Form Labels --&gt;
+&lt;label for="nome"&gt;Nome:&lt;/label&gt;
+&lt;input type="text" id="nome" name="nome"&gt;
+
+&lt;!-- Error Messages --&gt;
+&lt;input type="email" id="email" name="email" aria-invalid="true"&gt;
+&lt;div id="email-error" role="alert"&gt;E-mail inválido&lt;/div&gt;</code></pre>
+                </div>
+
+                <div class="content-card">
+                    <h3>Elementos de Dados</h3>
+                    <p>HTML5 oferece elementos para trabalhar com dados estruturados:</p>
+                    <pre><code>&lt;!-- Dados estruturados --&gt;
+&lt;article itemscope itemtype="http://schema.org/BlogPosting"&gt;
+    &lt;h1 itemprop="headline"&gt;Título do Post&lt;/h1&gt;
+    &lt;div itemprop="author" itemscope itemtype="http://schema.org/Person"&gt;
+        &lt;span itemprop="name"&gt;Nome do Autor&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;time itemprop="datePublished" datetime="2024-03-20"&gt;20 de Março de 2024&lt;/time&gt;
+&lt;/article&gt;
+
+&lt;!-- Microdata --&gt;
+&lt;div itemscope itemtype="http://schema.org/Product"&gt;
+    &lt;h1 itemprop="name"&gt;Nome do Produto&lt;/h1&gt;
+    &lt;img itemprop="image" src="produto.jpg" alt="Produto"&gt;
+    &lt;div itemprop="description"&gt;Descrição do produto&lt;/div&gt;
+    &lt;div itemprop="offers" itemscope itemtype="http://schema.org/Offer"&gt;
+        &lt;span itemprop="price"&gt;R$ 99,90&lt;/span&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- JSON-LD --&gt;
+&lt;script type="application/ld+json"&gt;
+{
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "name": "Nome da Empresa",
+    "url": "https://seusite.com",
+    "logo": "https://seusite.com/logo.png",
+    "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+55-11-99999-9999",
+        "contactType": "customer service"
+    }
+}
+&lt;/script&gt;</code></pre>
+                </div>
+
+                <div class="content-card">
+                    <h3>Elementos de Canvas e SVG</h3>
+                    <p>HTML5 oferece elementos poderosos para gráficos e animações:</p>
+                    <pre><code>&lt;!-- Canvas --&gt;
+&lt;canvas id="meuCanvas" width="400" height="200"&gt;
+    Seu navegador não suporta o elemento canvas.
+&lt;/canvas&gt;
+
+&lt;script&gt;
+    const canvas = document.getElementById('meuCanvas');
+    const ctx = canvas.getContext('2d');
+    
+    // Desenhar um retângulo
+    ctx.fillStyle = '#FFD700';
+    ctx.fillRect(50, 50, 100, 100);
+    
+    // Desenhar um círculo
+    ctx.beginPath();
+    ctx.arc(200, 100, 50, 0, Math.PI * 2);
+    ctx.fillStyle = '#FFA500';
+    ctx.fill();
+    
+    // Desenhar texto
+    ctx.font = '20px Arial';
+    ctx.fillStyle = '#FFFFFF';
+    ctx.fillText('Canvas HTML5', 150, 150);
+&lt;/script&gt;
+
+&lt;!-- SVG --&gt;
+&lt;svg width="400" height="200" viewBox="0 0 400 200"&gt;
+    &lt;!-- Retângulo --&gt;
+    &lt;rect x="50" y="50" width="100" height="100" 
+          fill="#FFD700" 
+          stroke="#FFA500" 
+          stroke-width="2"/&gt;
+    
+    &lt;!-- Círculo --&gt;
+    &lt;circle cx="200" cy="100" r="50" 
+            fill="#FFA500" 
+            stroke="#FFD700" 
+            stroke-width="2"/&gt;
+    
+    &lt;!-- Texto --&gt;
+    &lt;text x="150" y="150" 
+          fill="#FFFFFF" 
+          font-family="Arial" 
+          font-size="20"&gt;
+        SVG HTML5
+    &lt;/text&gt;
+    
+    &lt;!-- Gradiente --&gt;
+    &lt;defs&gt;
+        &lt;linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%"&gt;
+            &lt;stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" /&gt;
+            &lt;stop offset="100%" style="stop-color:#FFA500;stop-opacity:1" /&gt;
+        &lt;/linearGradient&gt;
+    &lt;/defs&gt;
+    
+    &lt;!-- Forma com gradiente --&gt;
+    &lt;path d="M300,50 L350,100 L300,150 L250,100 Z" 
+          fill="url(#grad1)"/&gt;
+&lt;/svg&gt;</code></pre>
+                </div>
+
+                <div class="content-card">
+                    <h3>Elementos de Áudio e Vídeo Avançados</h3>
+                    <p>Recursos avançados para mídia:</p>
+                    <pre><code>&lt;!-- Áudio com controles personalizados --&gt;
+&lt;audio id="meuAudio"&gt;
+    &lt;source src="audio.mp3" type="audio/mpeg"&gt;
+    &lt;source src="audio.ogg" type="audio/ogg"&gt;
+&lt;/audio&gt;
+
+&lt;div class="audio-controls"&gt;
+    &lt;button onclick="document.getElementById('meuAudio').play()"&gt;
+        &lt;i class="fas fa-play"&gt;&lt;/i&gt;
+    &lt;/button&gt;
+    &lt;button onclick="document.getElementById('meuAudio').pause()"&gt;
+        &lt;i class="fas fa-pause"&gt;&lt;/i&gt;
+    &lt;/button&gt;
+    &lt;input type="range" 
+           min="0" 
+           max="100" 
+           value="0" 
+           class="volume-slider"&gt;
+&lt;/div&gt;
+
+&lt;!-- Vídeo com controles personalizados --&gt;
+&lt;video id="meuVideo" poster="thumbnail.jpg"&gt;
+    &lt;source src="video.mp4" type="video/mp4"&gt;
+    &lt;source src="video.webm" type="video/webm"&gt;
+    &lt;track src="legendas-pt.vtt" 
+           kind="subtitles" 
+           srclang="pt" 
+           label="Português" 
+           default&gt;
+    &lt;track src="legendas-en.vtt" 
+           kind="subtitles" 
+           srclang="en" 
+           label="English"&gt;
+&lt;/video&gt;
+
+&lt;div class="video-controls"&gt;
+    &lt;button class="play-pause"&gt;
+        &lt;i class="fas fa-play"&gt;&lt;/i&gt;
+    &lt;/button&gt;
+    &lt;div class="progress-bar"&gt;
+        &lt;div class="progress"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;button class="mute"&gt;
+        &lt;i class="fas fa-volume-up"&gt;&lt;/i&gt;
+    &lt;/button&gt;
+    &lt;input type="range" 
+           min="0" 
+           max="100" 
+           value="100" 
+           class="volume-slider"&gt;
+    &lt;button class="fullscreen"&gt;
+        &lt;i class="fas fa-expand"&gt;&lt;/i&gt;
+    &lt;/button&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+
+                <div class="content-card">
+                    <h3>Elementos de Formulário Avançados</h3>
+                    <p>Recursos avançados para formulários:</p>
+                    <pre><code>&lt;form id="formularioAvancado"&gt;
+    &lt;!-- Validação em tempo real --&gt;
+    &lt;div class="form-group"&gt;
+        &lt;label for="usuario"&gt;Nome de usuário:&lt;/label&gt;
+        &lt;input type="text" 
+               id="usuario" 
+               name="usuario" 
+               pattern="[a-zA-Z0-9]{3,20}" 
+               required 
+               oninput="validarUsuario(this)"&gt;
+        &lt;span class="feedback"&gt;&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Upload com preview --&gt;
+    &lt;div class="form-group"&gt;
+        &lt;label for="foto"&gt;Foto de perfil:&lt;/label&gt;
+        &lt;input type="file" 
+               id="foto" 
+               name="foto" 
+               accept="image/*" 
+               onchange="previewImagem(this)"&gt;
+        &lt;div id="preview"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Seleção de cor com preview --&gt;
+    &lt;div class="form-group"&gt;
+        &lt;label for="corTema"&gt;Cor do tema:&lt;/label&gt;
+        &lt;input type="color" 
+               id="corTema" 
+               name="corTema" 
+               value="#FFD700" 
+               onchange="atualizarTema(this.value)"&gt;
+        &lt;div id="previewCor"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Seleção de data com range --&gt;
+    &lt;div class="form-group"&gt;
+        &lt;label for="periodo"&gt;Período:&lt;/label&gt;
+        &lt;input type="date" 
+               id="dataInicio" 
+               name="dataInicio" 
+               min="2024-01-01" 
+               max="2024-12-31"&gt;
+        &lt;input type="date" 
+               id="dataFim" 
+               name="dataFim" 
+               min="2024-01-01" 
+               max="2024-12-31"&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Autocomplete --&gt;
+    &lt;div class="form-group"&gt;
+        &lt;label for="cidade"&gt;Cidade:&lt;/label&gt;
+        &lt;input type="text" 
+               id="cidade" 
+               name="cidade" 
+               list="listaCidades"&gt;
+        &lt;datalist id="listaCidades"&gt;
+            &lt;option value="São Paulo"&gt;
+            &lt;option value="Rio de Janeiro"&gt;
+            &lt;option value="Belo Horizonte"&gt;
+            &lt;option value="Salvador"&gt;
+            &lt;option value="Brasília"&gt;
+        &lt;/datalist&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Validação de força de senha --&gt;
+    &lt;div class="form-group"&gt;
+        &lt;label for="senha"&gt;Senha:&lt;/label&gt;
+        &lt;input type="password" 
+               id="senha" 
+               name="senha" 
+               required 
+               oninput="validarSenha(this)"&gt;
+        &lt;div class="senha-forca"&gt;
+            &lt;div class="barra"&gt;&lt;/div&gt;
+            &lt;span class="texto"&gt;Força da senha&lt;/span&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Campos condicionais --&gt;
+    &lt;div class="form-group"&gt;
+        &lt;label&gt;Tipo de conta:&lt;/label&gt;
+        &lt;select id="tipoConta" onchange="mostrarCamposAdicionais(this.value)"&gt;
+            &lt;option value="pessoal"&gt;Pessoal&lt;/option&gt;
+            &lt;option value="empresarial"&gt;Empresarial&lt;/option&gt;
+        &lt;/select&gt;
+    &lt;/div&gt;
+
+    &lt;div id="camposEmpresariais" style="display: none;"&gt;
+        &lt;div class="form-group"&gt;
+            &lt;label for="cnpj"&gt;CNPJ:&lt;/label&gt;
+            &lt;input type="text" 
+                   id="cnpj" 
+                   name="cnpj" 
+                   pattern="\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}"&gt;
+        &lt;/div&gt;
+        &lt;div class="form-group"&gt;
+            &lt;label for="razaoSocial"&gt;Razão Social:&lt;/label&gt;
+            &lt;input type="text" id="razaoSocial" name="razaoSocial"&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Validação de formulário --&gt;
+    &lt;button type="submit" onclick="return validarFormulario()"&gt;
+        Enviar
+    &lt;/button&gt;
+&lt;/form&gt;
+
+&lt;script&gt;
+    // Funções de validação e interatividade
+    function validarUsuario(input) {
+        const feedback = input.nextElementSibling;
+        const valor = input.value;
+        
+        if (valor.length < 3) {
+            feedback.textContent = 'Mínimo de 3 caracteres';
+            feedback.style.color = 'red';
+        } else if (valor.length > 20) {
+            feedback.textContent = 'Máximo de 20 caracteres';
+            feedback.style.color = 'red';
+        } else if (!/^[a-zA-Z0-9]+$/.test(valor)) {
+            feedback.textContent = 'Apenas letras e números';
+            feedback.style.color = 'red';
+        } else {
+            feedback.textContent = '✓ Válido';
+            feedback.style.color = 'green';
+        }
+    }
+
+    function previewImagem(input) {
+        const preview = document.getElementById('preview');
+        const file = input.files[0];
+        
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                preview.innerHTML = `&lt;img src="${e.target.result}" style="max-width: 200px;"&gt;`;
+            }
+            reader.readAsDataURL(file);
+        }
+    }
+
+    function atualizarTema(cor) {
+        const preview = document.getElementById('previewCor');
+        preview.style.backgroundColor = cor;
+        preview.style.width = '50px';
+        preview.style.height = '50px';
+        preview.style.borderRadius = '50%';
+    }
+
+    function validarSenha(input) {
+        const barra = document.querySelector('.senha-forca .barra');
+        const texto = document.querySelector('.senha-forca .texto');
+        const senha = input.value;
+        
+        let forca = 0;
+        if (senha.length >= 8) forca++;
+        if (/[A-Z]/.test(senha)) forca++;
+        if (/[a-z]/.test(senha)) forca++;
+        if (/[0-9]/.test(senha)) forca++;
+        if (/[^A-Za-z0-9]/.test(senha)) forca++;
+        
+        const cores = ['red', 'orange', 'yellow', 'lightgreen', 'green'];
+        const textos = ['Muito fraca', 'Fraca', 'Média', 'Forte', 'Muito forte'];
+        
+        barra.style.width = `${forca * 20}%`;
+        barra.style.backgroundColor = cores[forca - 1];
+        texto.textContent = textos[forca - 1];
+    }
+
+    function mostrarCamposAdicionais(tipo) {
+        const campos = document.getElementById('camposEmpresariais');
+        campos.style.display = tipo === 'empresarial' ? 'block' : 'none';
+    }
+
+    function validarFormulario() {
+        const form = document.getElementById('formularioAvancado');
+        if (!form.checkValidity()) {
+            alert('Por favor, preencha todos os campos obrigatórios corretamente.');
+            return false;
+        }
+        return true;
+    }
+&lt;/script&gt;</code></pre>
+                </div>
+
+                <div class="content-card">
+                    <h3>Elementos de Acessibilidade Avançados</h3>
+                    <p>Recursos avançados para acessibilidade:</p>
+                    <pre><code>&lt;!-- Navegação por teclado --&gt;
+&lt;nav role="navigation" aria-label="Menu principal"&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="#inicio" tabindex="0"&gt;Início&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#sobre" tabindex="0"&gt;Sobre&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#contato" tabindex="0"&gt;Contato&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;
+
+&lt;!-- Skip Links --&gt;
+&lt;a href="#main" class="skip-link"&gt;
+    Pular para o conteúdo principal
+&lt;/a&gt;
+
+&lt;!-- ARIA Live Regions --&gt;
+&lt;div aria-live="polite" id="notificacoes"&gt;
+    &lt;!-- Notificações dinâmicas aparecerão aqui --&gt;
+&lt;/div&gt;
+
+&lt;!-- ARIA Descriptions --&gt;
+&lt;button aria-describedby="descricaoBotao"&gt;
+    Enviar formulário
+&lt;/button&gt;
+&lt;div id="descricaoBotao" class="visually-hidden"&gt;
+    Clique para enviar o formulário. Todos os campos serão validados.
+&lt;/div&gt;
+
+&lt;!-- ARIA Labels Dinâmicos --&gt;
+&lt;div role="progressbar" 
+     aria-valuenow="75" 
+     aria-valuemin="0" 
+     aria-valuemax="100" 
+     aria-label="Progresso do upload"&gt;
+    &lt;div class="progress" style="width: 75%"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- ARIA Controls --&gt;
+&lt;button aria-controls="painelNotificacoes" 
+        aria-expanded="false" 
+        onclick="togglePainel(this)"&gt;
+    Notificações
+&lt;/button&gt;
+&lt;div id="painelNotificacoes" hidden&gt;
+    &lt;!-- Conteúdo do painel --&gt;
+&lt;/div&gt;
+
+&lt;!-- ARIA Describedby Múltiplo --&gt;
+&lt;input type="text" 
+       aria-describedby="descricao1 descricao2" 
+       id="campoBusca"&gt;
+&lt;div id="descricao1"&gt;Digite sua busca&lt;/div&gt;
+&lt;div id="descricao2"&gt;Pressione Enter para pesquisar&lt;/div&gt;
+
+&lt;!-- ARIA Hidden --&gt;
+&lt;div aria-hidden="true"&gt;
+    &lt;!-- Conteúdo visual apenas --&gt;
+&lt;/div&gt;
+
+&lt;!-- ARIA Current --&gt;
+&lt;nav aria-label="Páginas"&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="#" aria-current="page"&gt;Página 1&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Página 2&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Página 3&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;
+
+&lt;!-- ARIA Modal --&gt;
+&lt;div role="dialog" 
+     aria-labelledby="tituloModal" 
+     aria-describedby="descricaoModal"&gt;
+    &lt;h2 id="tituloModal"&gt;Título do Modal&lt;/h2&gt;
+    &lt;p id="descricaoModal"&gt;Descrição do modal&lt;/p&gt;
+    &lt;button onclick="fecharModal()"&gt;Fechar&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!-- ARIA Tabs --&gt;
+&lt;div role="tablist"&gt;
+    &lt;button role="tab" 
+            aria-selected="true" 
+            aria-controls="painel1" 
+            id="tab1"&gt;
+        Aba 1
+    &lt;/button&gt;
+    &lt;button role="tab" 
+            aria-selected="false" 
+            aria-controls="painel2" 
+            id="tab2"&gt;
+        Aba 2
+    &lt;/button&gt;
+&lt;/div&gt;
+&lt;div role="tabpanel" 
+     id="painel1" 
+     aria-labelledby="tab1"&gt;
+    Conteúdo da aba 1
+&lt;/div&gt;
+&lt;div role="tabpanel" 
+     id="painel2" 
+     aria-labelledby="tab2" 
+     hidden&gt;
+    Conteúdo da aba 2
+&lt;/div&gt;
+
+&lt;script&gt;
+    // Funções de acessibilidade
+    function togglePainel(button) {
+        const painel = document.getElementById('painelNotificacoes');
+        const expanded = button.getAttribute('aria-expanded') === 'true';
+        
+        button.setAttribute('aria-expanded', !expanded);
+        painel.hidden = expanded;
+    }
+
+    function fecharModal() {
+        const modal = document.querySelector('[role="dialog"]');
+        modal.style.display = 'none';
+    }
+
+    // Gerenciamento de tabs
+    document.querySelectorAll('[role="tab"]').forEach(tab => {
+        tab.addEventListener('click', () => {
+            // Desativa todas as tabs
+            document.querySelectorAll('[role="tab"]').forEach(t => {
+                t.setAttribute('aria-selected', 'false');
+            });
+            
+            // Esconde todos os painéis
+            document.querySelectorAll('[role="tabpanel"]').forEach(p => {
+                p.hidden = true;
+            });
+            
+            // Ativa a tab clicada
+            tab.setAttribute('aria-selected', 'true');
+            
+            // Mostra o painel correspondente
+            const painelId = tab.getAttribute('aria-controls');
+            document.getElementById(painelId).hidden = false;
+        });
+    });
+&lt;/script&gt;</code></pre>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 CodeFront - Colégio Malba Tahan. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll para links de navegação
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Criar estrelas
+        const stars = document.querySelector('.stars');
+        for (let i = 0; i < 150; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.width = `${Math.random() * 2 + 1}px`;
+            star.style.height = star.style.width;
+            star.style.animationDelay = `${Math.random() * 3}s`;
+            stars.appendChild(star);
+        }
+
+        // Criar partículas
+        const particles = document.querySelector('.space-particles');
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'space-particle';
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.top = `${Math.random() * 100}%`;
+            particle.style.width = `${Math.random() * 4 + 2}px`;
+            particle.style.height = particle.style.width;
+            particle.style.animationDelay = `${Math.random() * 5}s`;
+            particles.appendChild(particle);
+        }
+
+        // Efeito de parallax no fundo
+        document.addEventListener('mousemove', (e) => {
+            const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+            const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+            
+            document.querySelector('.stars').style.transform = `translate(${moveX}px, ${moveY}px)`;
+            document.querySelector('.tech-grid').style.transform = `translate(${moveX * 2}px, ${moveY * 2}px)`;
+            document.querySelector('.space-particles').style.transform = `translate(${moveX * 3}px, ${moveY * 3}px)`;
+        });
+    </script>
+</body>
+</html> 

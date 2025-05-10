@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React - Desenvolvimento de Interfaces Modernas</title>
+    <link rel="shortcut icon" href="malbaLogo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FFD700;
+            --text: #E0E0E0;
+            --background: #0A0A0A;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --gradient-1: linear-gradient(45deg, #FFD700, #FFA500);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--background);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Background Animado */
+        .animated-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        .twinkling {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, var(--background) 100%);
+        }
+
+        .tech-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, var(--glass-border) 1px, transparent 1px) 0 0 / 50px 50px,
+                linear-gradient(0deg, var(--glass-border) 1px, transparent 1px) 0 0 / 50px 50px;
+            opacity: 0.1;
+        }
+
+        .space-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .space-particle {
+            position: absolute;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: float 5s infinite;
+        }
+
+        .gradient-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, var(--background) 100%);
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Header */
+        header {
+            position: relative;
+            z-index: 1;
+            padding: 2rem 0;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), transparent);
+        }
+
+        .header-content {
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        .logo-link {
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+        }
+
+        .header-content h1 {
+            font-size: 2.5rem;
+            margin: 0.5rem 0;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header-content p {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+            opacity: 0.9;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .nav-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.1);
+            background: var(--gradient-1);
+            color: var(--background);
+        }
+
+        /* Conteúdo */
+        main {
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .content-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .content-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.08);
+        }
+
+        .content-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .content-card p {
+            color: var(--text);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        pre {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            position: relative;
+        }
+
+        pre::before {
+            content: 'Código';
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--gradient-1);
+            color: var(--background);
+            padding: 0.2rem 0.8rem;
+            border-radius: 0 8px 0 8px;
+            font-size: 0.7rem;
+        }
+
+        code {
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            color: #E0E0E0;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: var(--gradient-1);
+            color: var(--background);
+            text-decoration: none;
+            border-radius: 50px;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.2);
+        }
+
+        .back-button i {
+            margin-right: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid var(--glass-border);
+            margin-top: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        footer p {
+            color: var(--text);
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .content-card {
+                padding: 1.2rem;
+            }
+
+            .content-card h3 {
+                font-size: 1.3rem;
+            }
+
+            .nav-links {
+                gap: 0.5rem;
+            }
+
+            .nav-link {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-background">
+        <div class="stars"></div>
+        <div class="twinkling"></div>
+        <div class="tech-grid"></div>
+        <div class="space-particles"></div>
+        <div class="gradient-overlay"></div>
+    </div>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo-link">
+                    <img src="malbaLogo.png" alt="Logo do Colégio Malba Tahan" class="logo">
+                </a>
+                <h1>React</h1>
+                <p>Desenvolvimento de Interfaces Modernas</p>
+                <div class="nav-links">
+                    <a href="#basico" class="nav-link">Básico</a>
+                    <a href="#intermediario" class="nav-link">Intermediário</a>
+                    <a href="#avancado" class="nav-link">Avançado</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <a href="index.html" class="back-button">
+                <i class="fas fa-arrow-left"></i>
+                Voltar
+            </a>
+
+            <section id="basico">
+                <h2 class="section-title">Conceitos Básicos</h2>
+                
+                <div class="content-card">
+                    <h3>Introdução ao React</h3>
+                    <p>React é uma biblioteca JavaScript para construção de interfaces de usuário. Desenvolvida pelo Facebook, permite criar componentes reutilizáveis e gerenciar o estado da aplicação de forma eficiente.</p>
+                    <pre><code>// Exemplo de um componente React básico
+import React from 'react';
+
+function Saudacao() {
+    return (
+        <div>
+            <h1>Olá, Mundo!</h1>
+            <p>Bem-vindo ao React</p>
+        </div>
+    );
+}
+
+export default Saudacao;</code></pre>
+                </div>
+
+                <div class="content-card">
+                    <h3>JSX</h3>
+                    <p>JSX é uma extensão de sintaxe para JavaScript que permite escrever código HTML dentro do JavaScript. O React usa JSX para descrever como a interface deve parecer.</p>
+                    <pre><code>// Exemplo de JSX
+const elemento = (
+    <div>
+        <h1>Olá, {nome}</h1>
+        <p>Bem-vindo ao nosso site!</p>
+    </div>
+);</code></pre>
+                </div>
+
+                <div class="content-card">
+                    <h3>Componentes e Props</h3>
+                    <p>Componentes são blocos de construção reutilizáveis em React. Props são propriedades que podem ser passadas para componentes.</p>
+                    <pre><code>// Componente com props
+function Saudacao(props) {
+    return (
+        <div>
+            <h1>Olá, {props.nome}!</h1>
+            <p>Você tem {props.idade} anos.</p>
+        </div>
+    );
+}
+
+// Uso do componente
+<Saudacao nome="João" idade={25} /></code></pre>
+                </div>
+            </section>
+
+            <section id="intermediario">
+                <h2 class="section-title">Conceitos Intermediários</h2>
+                
+                <div class="content-card">
+                    <h3>Estado (State)</h3>
+                    <p>O estado é um objeto que armazena dados que podem mudar ao longo do tempo em um componente.</p>
+                    <pre><code>// Exemplo de uso de estado
+import React, { useState } from 'react';
+
+function Contador() {
+    const [contador, setContador] = useState(0);
+
+    return (
+        <div>
+            <p>Contador: {contador}</p>
+            <button onClick={() => setContador(contador + 1)}>
+                Incrementar
+            </button>
+        </div>
+    );
+}</code></pre>
+                </div>
+
+                <div class="content-card">
+                    <h3>Efeitos (useEffect)</h3>
+                    <p>O useEffect é um Hook que permite executar efeitos colaterais em componentes funcionais.</p>
+                    <pre><code>// Exemplo de useEffect
+import React, { useState, useEffect } from 'react';
+
+function Exemplo() {
+    const [dados, setDados] = useState([]);
+
+    useEffect(() => {
+        // Buscar dados da API
+        fetch('https://api.exemplo.com/dados')
+            .then(response => response.json())
+            .then(data => setDados(data));
+    }, []); // Array de dependências vazio = executa apenas uma vez
+
+    return (
+        <div>
+            {dados.map(item => (
+                <p key={item.id}>{item.nome}</p>
+            ))}
+        </div>
+    );
+}</code></pre>
+                </div>
+
+                <div class="content-card">
+                    <h3>Eventos</h3>
+                    <p>React permite manipular eventos de forma similar ao HTML, mas com algumas diferenças sintáticas.</p>
+                    <pre><code>// Exemplo de manipulação de eventos
+function Formulario() {
+    const [valor, setValor] = useState('');
+
+    const handleSubmit = (evento) => {
+        evento.preventDefault();
+        console.log('Formulário enviado:', valor);
+    };
+
+    return (
+        <form onSubmit={handleSubmit}>
+            <input
+                type="text"
+                value={valor}
+                onChange={(e) => setValor(e.target.value)}
+            />
+            <button type="submit">Enviar</button>
+        </form>
+    );
+}</code></pre>
+                </div>
+            </section>
+
+            <section id="avancado">
+                <h2 class="section-title">Conceitos Avançados</h2>
+                
+                <div class="content-card">
+                    <h3>Context API</h3>
+                    <p>A Context API permite compartilhar dados entre componentes sem precisar passar props manualmente em cada nível.</p>
+                    <pre><code>// Criando um contexto
+import React, { createContext, useContext, useState } from 'react';
+
+const TemaContext = createContext();
+
+function ProvedorTema({ children }) {
+    const [tema, setTema] = useState('claro');
+
+    return (
+        <TemaContext.Provider value={{ tema, setTema }}>
+            {children}
+        </TemaContext.Provider>
+    );
+}
+
+// Usando o contexto
+function Componente() {
+    const { tema, setTema } = useContext(TemaContext);
+    return (
+        <div>
+            <p>Tema atual: {tema}</p>
+            <button onClick={() => setTema('escuro')}>
+                Mudar Tema
+            </button>
+        </div>
+    );
+}</code></pre>
+                </div>
+
+                <div class="content-card">
+                    <h3>Hooks Personalizados</h3>
+                    <p>Hooks personalizados permitem extrair lógica de componentes para funções reutilizáveis.</p>
+                    <pre><code>// Exemplo de hook personalizado
+function useContador(valorInicial = 0) {
+    const [contador, setContador] = useState(valorInicial);
+
+    const incrementar = () => setContador(c => c + 1);
+    const decrementar = () => setContador(c => c - 1);
+    const resetar = () => setContador(valorInicial);
+
+    return { contador, incrementar, decrementar, resetar };
+}
+
+// Usando o hook personalizado
+function Componente() {
+    const { contador, incrementar, decrementar } = useContador(0);
+
+    return (
+        <div>
+            <p>Contador: {contador}</p>
+            <button onClick={incrementar}>+</button>
+            <button onClick={decrementar}>-</button>
+        </div>
+    );
+}</code></pre>
+                </div>
+
+                <div class="content-card">
+                    <h3>Renderização Condicional</h3>
+                    <p>React permite renderizar componentes de forma condicional usando operadores lógicos e ternários.</p>
+                    <pre><code>// Exemplo de renderização condicional
+function Componente({ usuario }) {
+    return (
+        <div>
+            {usuario ? (
+                <div>
+                    <h1>Bem-vindo, {usuario.nome}!</h1>
+                    <button onClick={handleLogout}>Sair</button>
+                </div>
+            ) : (
+                <div>
+                    <h1>Por favor, faça login</h1>
+                    <button onClick={handleLogin}>Login</button>
+                </div>
+            )}
+        </div>
+    );
+}</code></pre>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 CodeFront - Colégio Malba Tahan. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll para links de navegação
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Criar estrelas
+        const stars = document.querySelector('.stars');
+        for (let i = 0; i < 150; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.width = `${Math.random() * 2 + 1}px`;
+            star.style.height = star.style.width;
+            star.style.animationDelay = `${Math.random() * 3}s`;
+            stars.appendChild(star);
+        }
+
+        // Criar partículas
+        const particles = document.querySelector('.space-particles');
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'space-particle';
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.top = `${Math.random() * 100}%`;
+            particle.style.width = `${Math.random() * 4 + 2}px`;
+            particle.style.height = particle.style.width;
+            particle.style.animationDelay = `${Math.random() * 5}s`;
+            particles.appendChild(particle);
+        }
+
+        // Efeito de parallax no fundo
+        document.addEventListener('mousemove', (e) => {
+            const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+            const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+            
+            document.querySelector('.stars').style.transform = `translate(${moveX}px, ${moveY}px)`;
+            document.querySelector('.tech-grid').style.transform = `translate(${moveX * 2}px, ${moveY * 2}px)`;
+            document.querySelector('.space-particles').style.transform = `translate(${moveX * 3}px, ${moveY * 3}px)`;
+        });
+    </script>
+</body>
+</html> 

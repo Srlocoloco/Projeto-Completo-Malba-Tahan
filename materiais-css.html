@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS3 - Estilização e Design Web</title>
+    <link rel="shortcut icon" href="malbaLogo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FFD700;
+            --text: #E0E0E0;
+            --background: #0A0A0A;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --gradient-1: linear-gradient(45deg, #FFD700, #FFA500);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--background);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Background Animado */
+        .animated-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        .twinkling {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, var(--background) 100%);
+        }
+
+        .tech-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, var(--glass-border) 1px, transparent 1px) 0 0 / 50px 50px,
+                linear-gradient(0deg, var(--glass-border) 1px, transparent 1px) 0 0 / 50px 50px;
+            opacity: 0.1;
+        }
+
+        .space-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .space-particle {
+            position: absolute;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: float 5s infinite;
+        }
+
+        .gradient-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, var(--background) 100%);
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Header */
+        header {
+            position: relative;
+            z-index: 1;
+            padding: 2rem 0;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), transparent);
+        }
+
+        .header-content {
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        .logo-link {
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+        }
+
+        .header-content h1 {
+            font-size: 2.5rem;
+            margin: 0.5rem 0;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header-content p {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+            opacity: 0.9;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .nav-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.1);
+            background: var(--gradient-1);
+            color: var(--background);
+        }
+
+        /* Conteúdo */
+        main {
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .content-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .content-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.08);
+        }
+
+        .content-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .content-card p {
+            color: var(--text);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        pre {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            position: relative;
+        }
+
+        pre::before {
+            content: 'Código';
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--gradient-1);
+            color: var(--background);
+            padding: 0.2rem 0.8rem;
+            border-radius: 0 8px 0 8px;
+            font-size: 0.7rem;
+        }
+
+        code {
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            color: #E0E0E0;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: var(--gradient-1);
+            color: var(--background);
+            text-decoration: none;
+            border-radius: 50px;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.2);
+        }
+
+        .back-button i {
+            margin-right: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid var(--glass-border);
+            margin-top: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        footer p {
+            color: var(--text);
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .content-card {
+                padding: 1.2rem;
+            }
+
+            .content-card h3 {
+                font-size: 1.3rem;
+            }
+
+            .nav-links {
+                gap: 0.5rem;
+            }
+
+            .nav-link {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-background">
+        <div class="stars"></div>
+        <div class="twinkling"></div>
+        <div class="tech-grid"></div>
+        <div class="space-particles"></div>
+        <div class="gradient-overlay"></div>
+    </div>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo-link">
+                    <img src="malbaLogo.png" alt="Logo do Colégio Malba Tahan" class="logo">
+                </a>
+                <h1>CSS3</h1>
+                <p>Estilização e Design Web</p>
+                <div class="nav-links">
+                    <a href="#basico" class="nav-link">Básico</a>
+                    <a href="#intermediario" class="nav-link">Intermediário</a>
+                    <a href="#avancado" class="nav-link">Avançado</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <a href="index.html" class="back-button">
+                <i class="fas fa-arrow-left"></i>
+                Voltar
+            </a>
+
+            <section id="basico" class="content-section">
+                <h2>CSS Básico</h2>
+                <div class="content-card">
+                    <h3>Introdução ao CSS</h3>
+                    <p>CSS (Cascading Style Sheets) é a linguagem de estilo usada para descrever a apresentação de um documento HTML.</p>
+                    <ul>
+                        <li><strong>Cascading:</strong> Estilos são aplicados em cascata</li>
+                        <li><strong>Style:</strong> Define a aparência dos elementos</li>
+                        <li><strong>Sheets:</strong> Organizado em folhas de estilo</li>
+                    </ul>
+                </div>
+
+                <div class="content-card">
+                    <h3>Sintaxe Básica</h3>
+                    <pre><code>seletor {
+    propriedade: valor;
+}
+
+/* Exemplo */
+h1 {
+    color: blue;
+    font-size: 24px;
+    margin: 10px;
+}</code></pre>
+                </div>
+
+                <div class="content-card">
+                    <h3>Seletores Básicos</h3>
+                    <pre><code>/* Seletor de elemento */
+p {
+    color: red;
+}
+
+/* Seletor de classe */
+.destaque {
+    background: yellow;
+}
+
+/* Seletor de ID */
+#titulo {
+    font-size: 32px;
+}
+
+/* Seletor de atributo */
+input[type="text"] {
+    border: 1px solid gray;
+}
+
+/* Seletor de descendente */
+div p {
+    margin: 10px;
+}
+
+/* Seletor de filho direto */
+div > p {
+    padding: 5px;
+}
+
+/* Seletor de irmão adjacente */
+h2 + p {
+    font-style: italic;
+}
+
+/* Seletor de irmão geral */
+h2 ~ p {
+    color: blue;
+}</code></pre>
+                </div>
+
+                <div class="content-card">
+                    <h3>Propriedades de Texto</h3>
+                    <pre><code>p {
+    /* Fonte */
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    font-style: italic;
+    line-height: 1.5;
+
+    /* Texto */
+    color: #333;
+    text-align: center;
+    text-decoration: underline;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    letter-spacing: 1px;
+    word-spacing: 2px;
+}</code></pre>
+                </div>
+
+                <div class="content-card">
+                    <h3>Box Model</h3>
+                    <pre><code>div {
+    /* Dimensões */
+    width: 300px;
+    height: 200px;
+    
+    /* Margens */
+    margin: 10px;
+    margin-top: 20px;
+    margin-right: 15px;
+    margin-bottom: 20px;
+    margin-left: 15px;
+    
+    /* Padding */
+    padding: 15px;
+    padding-top: 20px;
+    padding-right: 15px;
+    padding-bottom: 20px;
+    padding-left: 15px;
+    
+    /* Borda */
+    border: 2px solid black;
+    border-radius: 10px;
+    
+    /* Box Sizing */
+    box-sizing: border-box;
+}</code></pre>
+                </div>
+            </section>
+
+            <section id="intermediario" class="content-section">
+                <h2>CSS Intermediário</h2>
+                <div class="content-card">
+                    <h3>Layout com Flexbox</h3>
+                    <pre><code>.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.item {
+    flex: 1;
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: 200px;
+    align-self: flex-start;
+}</code></pre>
+                </div>
+
+                <div class="content-card">
+                    <h3>Layout com Grid</h3>
+                    <pre><code>.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    gap: 20px;
+    grid-template-areas:
+        "header header header"
+        "sidebar main main"
+        "footer footer footer";
+}
+
+.grid-item {
+    grid-area: main;
+    grid-column: span 2;
+    grid-row: 2 / 4;
+}</code></pre>
+                </div>
+
+                <div class="content-card">
+                    <h3>Posicionamento</h3>
+                    <pre><code>.elemento {
+    position: relative;
+    top: 10px;
+    left: 20px;
+    z-index: 1;
+}
+
+.elemento-fixo {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+.elemento-absoluto {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.elemento-sticky {
+    position: sticky;
+    top: 0;
+}</code></pre>
+                </div>
+
+                <div class="content-card">
+                    <h3>Transformações</h3>
+                    <pre><code>.elemento {
+    /* Translação */
+    transform: translate(100px, 50px);
+    
+    /* Rotação */
+    transform: rotate(45deg);
+    
+    /* Escala */
+    transform: scale(1.5);
+    
+    /* Inclinação */
+    transform: skew(20deg);
+    
+    /* Múltiplas transformações */
+    transform: translate(100px, 50px) rotate(45deg) scale(1.5);
+}</code></pre>
+                </div>
+            </section>
+
+            <section id="avancado" class="content-section">
+                <h2>CSS Avançado</h2>
+                <div class="content-card">
+                    <h3>Animações</h3>
+                    <pre><code>@keyframes exemplo {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(100px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.elemento {
+    animation: exemplo 2s infinite;
+    animation-timing-function: ease-in-out;
+    animation-delay: 1s;
+    animation-direction: alternate;
+}</code></pre>
+                </div>
+
+                <div class="content-card">
+                    <h3>Variáveis CSS</h3>
+                    <pre><code>:root {
+    --cor-primaria: #007bff;
+    --cor-secundaria: #6c757d;
+    --espacamento: 20px;
+    --fonte-principal: 'Arial', sans-serif;
+}
+
+.elemento {
+    color: var(--cor-primaria);
+    margin: var(--espacamento);
+    font-family: var(--fonte-principal);
+}</code></pre>
+                </div>
+
+                <div class="content-card">
+                    <h3>Media Queries</h3>
+                    <pre><code>/* Dispositivos móveis */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+}
+
+/* Tablets */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Orientação do dispositivo */
+@media (orientation: landscape) {
+    .container {
+        height: 100vh;
+    }
+}</code></pre>
+                </div>
+
+                <div class="content-card">
+                    <h3>Pseudo-classes e Pseudo-elementos</h3>
+                    <pre><code>/* Pseudo-classes */
+a:hover {
+    color: red;
+}
+
+input:focus {
+    border-color: blue;
+}
+
+li:first-child {
+    font-weight: bold;
+}
+
+/* Pseudo-elementos */
+p::first-line {
+    font-variant: small-caps;
+}
+
+p::before {
+    content: "→ ";
+}
+
+p::after {
+    content: " ←";
+}</code></pre>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 CodeFront - Colégio Malba Tahan. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll para links de navegação
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Criar estrelas
+        const stars = document.querySelector('.stars');
+        for (let i = 0; i < 150; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.width = `${Math.random() * 2 + 1}px`;
+            star.style.height = star.style.width;
+            star.style.animationDelay = `${Math.random() * 3}s`;
+            stars.appendChild(star);
+        }
+
+        // Criar partículas
+        const particles = document.querySelector('.space-particles');
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'space-particle';
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.top = `${Math.random() * 100}%`;
+            particle.style.width = `${Math.random() * 4 + 2}px`;
+            particle.style.height = particle.style.width;
+            particle.style.animationDelay = `${Math.random() * 5}s`;
+            particles.appendChild(particle);
+        }
+
+        // Efeito de parallax no fundo
+        document.addEventListener('mousemove', (e) => {
+            const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+            const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+            
+            document.querySelector('.stars').style.transform = `translate(${moveX}px, ${moveY}px)`;
+            document.querySelector('.tech-grid').style.transform = `translate(${moveX * 2}px, ${moveY * 2}px)`;
+            document.querySelector('.space-particles').style.transform = `translate(${moveX * 3}px, ${moveY * 3}px)`;
+        });
+    </script>
+</body>
+</html> 
